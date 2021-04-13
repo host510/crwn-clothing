@@ -6,9 +6,9 @@ import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils';
 import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './header.styles';
 import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import CartDropdownContainer from '../cart-dropdown/cart-dropdown.container';
 
 const Header = ({ currentUser, hidden }) => (
   <HeaderContainer>
@@ -25,7 +25,7 @@ const Header = ({ currentUser, hidden }) => (
       )}
       <CartIcon />
     </OptionsContainer>
-    {hidden ? null : <CartDropdown />}
+    {hidden ? null : <CartDropdownContainer />}
   </HeaderContainer>
 );
 
