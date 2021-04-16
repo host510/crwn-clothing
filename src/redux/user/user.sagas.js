@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from "@redux-saga/core/effects";
+import { all, call, put, takeEvery, takeLatest } from "@redux-saga/core/effects";
 
 import { auth, createUserProfileDocument, googleProvider, getCurrentUser } from "../../firebase/firebase.utils";
 import { signInFailure, signInSuccess, signOutFailure, signOutSuccess, signUpFailure, signUpSuccess } from "./user.actions";
@@ -86,7 +86,7 @@ export function* onSignOutStart() {
 }
 
 export function* onSignUpStart() {
-  yield takeLatest(userActionTypes.SIGN_UP_START, signUp)
+  yield takeEvery(userActionTypes.SIGN_UP_START, signUp)
 }
 
 export function* onSignUpSuccess() {

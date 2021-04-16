@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,27 +13,24 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import './App.css';
 import { checkUserSession } from './redux/user/user.actions';
 
-class App extends React.Component {
+const App = ({ checkUserSession, currentUser }) => {
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+  useEffect(() => {
     checkUserSession();
-  }
+  }, [checkUserSession]);
 
-  render() {
-    const { currentUser } = this.props;
-    return (
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route exact path="/signin" render={() => currentUser ? (<Redirect to="/" />) : (<SignInAndSignUpPage />)} />
-        </Switch>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
+        <Route exact path="/signin" render={() => currentUser ? (<Redirect to="/" />) : (<SignInAndSignUpPage />)} />
+      </Switch>
+    </div>
+  );
+
 
 }
 
