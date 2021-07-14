@@ -5,6 +5,7 @@ import { signInFailure, signInSuccess, signOutFailure, signOutSuccess, signUpFai
 import userActionTypes from "./user.types";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
+  console.log(''+userAuth)
   try {
     const userRef = yield call(createUserProfileDocument, userAuth, additionalData);
     const userSnapshot = yield userRef.get();
